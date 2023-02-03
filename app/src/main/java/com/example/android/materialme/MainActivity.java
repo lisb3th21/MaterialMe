@@ -70,20 +70,18 @@ public class MainActivity extends AppCompatActivity {
 
         // Helper class for creating swipe to dismiss and drag and drop
         // functionality.
+        int swipeDirs;
+        if(gridColumnCount > 1){
+            swipeDirs = 0;
+        } else {
+            swipeDirs = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+        }
+
         ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper
                 .SimpleCallback(
-                    ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | 
-                    ItemTouchHelper.DOWN | ItemTouchHelper.UP,
-                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            /**
-             * Defines the drag and drop functionality.
-             *
-             * @param recyclerView The RecyclerView that contains the list items
-             * @param viewHolder The SportsViewHolder that is being moved
-             * @param target The SportsViewHolder that you are switching the
-             *               original one with.
-             * @return true if the item was moved, false otherwise
-             */
+                    ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT |
+                    ItemTouchHelper.DOWN | ItemTouchHelper.UP, swipeDirs) {
+
             @Override
             public boolean onMove(RecyclerView recyclerView,
                                   RecyclerView.ViewHolder viewHolder,
